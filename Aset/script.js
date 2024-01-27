@@ -9,9 +9,13 @@ function generateMatrix() {
 
   const matrixInputHtml = createMatrixTable(rows, columns);
   document.getElementById('matrixInput').innerHTML = matrixInputHtml;
+  matrixInput.innerHTML = matrixInputHtml;
 
   // Show the Cholesky Decomposition button
   document.getElementById('choleskyButton').style.display = 'block';
+
+  // Scroll to the matrix input section
+  matrixInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function createMatrixTable(rows, columns, matrix = []) {
