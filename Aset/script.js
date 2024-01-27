@@ -231,3 +231,22 @@ window.onload = function() {
     modal.style.display = "none";
   };
 };
+
+window.onload = function() {
+  var modal = document.getElementById("popupModal");
+
+  // Open the modal (assuming you want it open on page load)
+  modal.style.display = "flex"; // Or "block", depending on your layout
+
+  // Close modal using the "Close" button
+  document.getElementById("close-button").onclick = function() {
+    modal.style.display = "none";
+  };
+
+  // Close the modal when clicking outside of it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
+};

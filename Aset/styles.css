@@ -258,23 +258,29 @@ tr:nth-child(even) {
   text-align: center;
   border-radius: 10px;
   /* max resize */
-  max-width: 450px;
+  max-width: 350px;
   max-height:800px;
 
-  min-width: 300px;
-  min-height:600px;
+  min-width: 150px;
+  min-height:500px;
+}
+
+.modal-content img {
+  width: 100%;  /* Make the image take up 100% of the modal-content's width */
+  height: auto; /* Automatically adjust the height to maintain the aspect ratio */
 }
 
 .close-button {
-  color: #e23232;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+  background: none;
+  border: none;
+  color: #e23232; /* or any color you prefer */
+  font-size: 1em;
+  padding: 10px 20px;
+  cursor: pointer;
+  display: block; /* make it a block-level element */
+  margin: 20px auto 0; /* center the button in the modal */
 }
 
-.close-button:hover,
-.close-button:focus {
-  color: black;
-  text-decoration: none;
-  pointer-events: none;
+.close-button:hover {
+  color: #ffffff; /* color change on hover for better user experience */
 }
