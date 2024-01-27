@@ -1,32 +1,75 @@
 function generateMatrix() {
-    const rows = parseInt(document.getElementById('rows').value);
-    const columns = parseInt(document.getElementById('columns').value);
-  
-    if (isNaN(rows) || isNaN(columns) || rows <= 0 || columns <= 0) {
+  const rows = parseInt(document.getElementById('rows').value);
+  const columns = parseInt(document.getElementById('columns').value);
+
+  if (isNaN(rows) || isNaN(columns) || rows <= 0 || columns <= 0) {
       alert('Please enter valid rows and columns.');
       return;
-    }
-  
-    const matrixInputHtml = createMatrixTable(rows, columns);
-  
-    document.getElementById('matrixInput').innerHTML = matrixInputHtml;
   }
-  
-  function createMatrixTable(rows, columns) {
-    let matrixTableHtml = '<label for="matrix">Matrix:</label>';
-    matrixTableHtml += '<table id="matrixTable">';
-  
-    for (let i = 0; i < rows; i++) {
+
+  const matrixInputHtml = createMatrixTable(rows, columns);
+  document.getElementById('matrixInput').innerHTML = matrixInputHtml;
+
+  // Show the Cholesky Decomposition button
+  document.getElementById('choleskyButton').style.display = 'block';
+}
+
+function createMatrixTable(rows, columns, matrix = []) {
+  let matrixTableHtml = '<label for="matrix">Matrix:</label>';
+  matrixTableHtml += '<table id="matrixTable">';
+
+  for (let i = 0; i < rows; i++) {
       matrixTableHtml += '<tr>';
       for (let j = 0; j < columns; j++) {
-        matrixTableHtml += `<td><input type="number" id="matrix${i}_${j}" placeholder="(${i + 1},${j + 1})"></td>`;
+          let value = matrix[i] && matrix[i][j] ? matrix[i][j] : '';
+          matrixTableHtml += `<td><input type="number" id="matrix${i}_${j}" value="${value}" placeholder="(${i + 1},${j + 1})"></td>`;
       }
       matrixTableHtml += '</tr>';
-    }
-  
-    matrixTableHtml += '</table>';
-    return matrixTableHtml;
   }
+
+  matrixTableHtml += '</table>';
+  return matrixTableHtml;
+}
+
+function generateSymmetricPositiveDefiniteMatrix() {
+  const size = parseInt(document.getElementById('rows').value);
+  if (isNaN(size) || size <= 0) {
+      alert('Please enter a valid matrix size.');
+      return;
+  }
+
+  // Update the columns field to match the rows
+  document.getElementById('columns').value = size;
+
+  // Generate a random symmetric matrix
+  let matrix = [];
+  for (let i = 0; i < size; i++) {
+      matrix[i] = new Array(size).fill(0);
+      for (let j = 0; j <= i; j++) {
+          const value = Math.floor(Math.random() * 10) + 1; // +1 to avoid zero
+          matrix[i][j] = value;
+          matrix[j][i] = value; // Symmetry
+      }
+  }
+
+  // Modify the diagonal to ensure positive definiteness
+  for (let i = 0; i < size; i++) {
+      let sum = 0;
+      for (let j = 0; j < size; j++) {
+          if (i != j) {
+              sum += Math.abs(matrix[i][j]);
+          }
+      }
+      matrix[i][i] = sum + 1; // Diagonal element > sum of absolute values of non-diagonal elements in the row
+  }
+
+  // Display the generated matrix
+  const matrixInputHtml = createMatrixTable(size, size, matrix);
+  document.getElementById('matrixInput').innerHTML = matrixInputHtml;
+
+  // Show the Cholesky Decomposition button
+  document.getElementById('choleskyButton').style.display = 'block';
+}
 
   function choleskyDecomposition() {
     const rows = parseInt(document.getElementById('rows').value);
@@ -55,22 +98,17 @@ function generateMatrix() {
   }
   
   function displayCholeskyResult(resultMatrix) {
-    const rows = resultMatrix.length;
-    const columns = resultMatrix[0].length;
-  
+    const transpose = transposeMatrix(resultMatrix);
     let resultHtml = '<h3>Cholesky Decomposition Result:</h3>';
-    resultHtml += '<p>Lower Triangular Matrix (L):</p>';
-    resultHtml += '<table border="1">';
-  
-    for (let i = 0; i < rows; i++) {
-      resultHtml += '<tr>';
-      for (let j = 0; j < columns; j++) {
-        resultHtml += `<td>${resultMatrix[i][j].toFixed(4)}</td>`;
-      }
-      resultHtml += '</tr>';
-    }
-  
-    resultHtml += '</table>';
+    
+    resultHtml += '<div class="matrix-display">';
+    resultHtml += '<div><p>Lower Triangular Matrix (L):</p>';
+    resultHtml += matrixToHtmlTable(resultMatrix) + '</div>';
+
+    resultHtml += '<div><p>Transpose of Lower Triangular Matrix (L<sup>T</sup>):</p>';
+    resultHtml += matrixToHtmlTable(transpose) + '</div>';
+    resultHtml += '</div>';
+
     document.getElementById('result').innerHTML = resultHtml;
   }
   
@@ -137,4 +175,28 @@ function generateMatrix() {
   function minor(matrix, row, col) {
     return matrix.filter((_, i) => i !== row).map(row => row.filter((_, j) => j !== col));
   }
+
+function matrixToHtmlTable(matrix) {
+  let html = '<table border="1">';
+  for (let i = 0; i < matrix.length; i++) {
+      html += '<tr>';
+      for (let j = 0; j < matrix[i].length; j++) {
+          html += `<td>${matrix[i][j].toFixed(4)}</td>`;
+      }
+      html += '</tr>';
+  }
+  html += '</table>';
+  return html;
+}
+
+function transposeMatrix(matrix) {
+  return matrix[0].map((_, colIndex) => matrix.map(row => row[colIndex]));
+}
   
+  document.getElementById('rows').addEventListener('change', function() {
+    document.getElementById('choleskyButton').style.display = 'none';
+});
+
+  document.getElementById('columns').addEventListener('change', function() {
+    document.getElementById('choleskyButton').style.display = 'none';
+});

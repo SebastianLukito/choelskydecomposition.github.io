@@ -8,15 +8,17 @@
 </head>
 <body>
   <div class="container">
-    <h1>Cholesky Decomposition</h1>
-    <h2>Tugas Besar 1 Aljabar Linier</h2>
-    <h3>Ketua Kelompok: Sebastianus Lukito (41522110051)</h3>
-    <h3>Anggota Kelompok:</h3>
-    <ul>
-      <li>Bayu Randuaji Widodo (41522110016)
-      <li>Dzumaratin Damar Sasongko (41520110110)
-    </li>
-    </ul>
+    <h1 class="main-title">Cholesky Decomposition</h1>
+    <h2 class="sub-title">Tugas Besar 1 Aljabar Linier</h2>
+    <div class="group-info">
+      <h3 class="group-title">Ketua Kelompok:</h3>
+      <p class="group-member leader">Sebastianus Lukito (41522110051)</p>
+      <h3 class="group-title">Anggota Kelompok:</h3>
+      <ul class="member-list">
+        <li class="group-member">Bayu Randuaji Widodo (41522110016)</li>
+        <li class="group-member">Dzumaratin Damar Sasongko (41520110110)</li>
+      </ul>
+    </div>
 
     <label for="rows">Baris:</label>
     <input type="number" id="rows" placeholder="Masukan jumlah baris">
@@ -24,12 +26,15 @@
     <input type="number" id="columns" placeholder="Masukan jumlah kolom">
     <button onclick="generateMatrix()">Generate Matrix</button>
     <p>Perhatian!! Matriks yang diinput hanyalah matriks yang memiliki nilai definit positif dan simetris</p>
+    <p>Untuk mempermudah, silahkan gunakan tombol dibawah ini untuk mengenerate matriks definit positif dan simetris</p>
+    <button onclick="generateSymmetricPositiveDefiniteMatrix()">Generate Symmetric Positive Definite Matrix</button>
+    
     <div id="matrixInput"></div>
-    <button onclick="choleskyDecomposition()">Hitung Cholesky Decomposition</button>
+    <button onclick="choleskyDecomposition()" style="display: none;" id="choleskyButton">Hitung Cholesky Decomposition</button>
     <div id="result"></div>
 
-  <a href="explain.html">Pelajari tentang <i>Choelsky Decomposition</i></a>
-
+    <p> </p>
+    <a href="explain.html">Pelajari tentang Choelsky Decomposition</a>
   </div>
 
   <script src="Aset/script.js"></script>
