@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dekomposisi Cholesky - Penjelasan</title>
+  <link rel="stylesheet" type="text/css" href="Aset\styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Apa itu Dekomposisi Cholesky?</h1>
+    <p><i>Choelsky Decomposition</i> adalah metode dalam 
+        aljabar linear untuk mendekomposisi matriks simetris 
+        yang positif-definit menjadi matriks segitiga bawah dan 
+        transposenya. Metode ini dinamakan sesuai dengan matematikawan 
+        Prancis André-Louis Cholesky, yang mengembangkan metode dekomposisi Cholesky </p>
+    
+    <p>Proses ini melibatkan penjabaran matriks A ke dalam <i>lower triangular matrix</i> (L)
+        dan <i>transpose</i>-nya (L<sup>T</sup>), sehingga A = L*L<sup>T</sup>. Matriks L adalah matriks 
+        segitiga bawah yang di mana bagian atas kanan diagonal matriks bernilai 0 (nol). Contohnya pada
+        matriks L, L<sub>ij</sub> = 0, di mana i < j. </p>
+    
+    <p>Dekomposisi Cholesky banyak digunakan dalam analisis numerik. Ini sangat berguna 
+        untuk menyelesaikan sistem persamaan linear, menginverskan matriks, dan untuk 
+        simulasi Monte Carlo yang efisien dalam keuangan. Juga digunakan dalam algoritma 
+        untuk pendekatan least squares, filter Kalman, dan dalam simulasi proses acak.</p>
+    
+    <h2>Contoh Soal</h2>
+    <p>Misalkan kita memiliki matriks simetris positif definit A. Kita ingin menemukan matriks segitiga bawah L sedemikian sehingga A = LL<sup>T</sup>. Berikut adalah contoh matriks A dan hasil dekomposisi Choleskynya:</p>
+    <p>Matriks A:</p>
+    <img src="Aset\matrix1.png" alt="Matriks A">
+
+    <p>Matriks L (hasil dekomposisi):</p>
+    <p>Dekomposisi Choleskynya mungkin menghasilkan L:</p>
+    <img src="Aset\matrix2.png" alt="Matriks L">
+
+    <p>Dan dengan demikian A = LL<sup>T</sup>.</p>
+    
+    <a href="index.html">Kembali ke Halaman Utama</a>
+  </div>
+</body>
+</html>
