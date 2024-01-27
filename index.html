@@ -32,23 +32,36 @@
     </div>
     
     <div class="button-container">
-      <button onclick="generateMatrix()">Generate Matrix</button>
-      <p>Perhatian!! Matriks yang diinput hanyalah matriks yang memiliki nilai definit positif dan simetris</p>
-      <p>Untuk mempermudah, silahkan gunakan tombol di bawah ini untuk men-<i>generate</i> matriks definit positif dan simetris</p>
-      <button onclick="generateSymmetricPositiveDefiniteMatrix()">Generate Symmetric Positive Definite Matrix</button>
+      <button onclick="generateMatrix()">Buat Matrix</button>
     </div>
     
     <div id="matrixInput" class="matrix-display"></div>
+
+    <div class="button-container">
+      <p>Perhatian!! Matriks yang diinput hanyalah matriks yang memiliki nilai definit positif dan simetris.
+        Untuk mempermudah, silahkan gunakan tombol di bawah ini untuk men-<i>generate</i> matriks definit positif dan simetris</p>
+      <button onclick="generateSymmetricPositiveDefiniteMatrix()">Generate Symmetric Positive Definite Matrix</button>
+    </div>
+
     <div class="button-container">
       <button onclick="choleskyDecomposition()" style="display: none;" id="choleskyButton">Hitung Cholesky Decomposition</button>
     </div>
-    
+
     <div id="result" class="result-display"></div>
 
     <div class="learn-more-container">
       <a href="explain.html" class="learn-more-button">
         <span>Pelajari tentang Cholesky Decomposition</span>
       </a>
+    </div>
+  </div>
+
+  <div id="popupModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>TUTORIAL PENGGUNAAN KALKULATOR CHOELSKY DECOMPOSITION</h2>
+      <img src="Aset\tutorial.gif" alt="Tutorial GIF">
+      <div class="resize-handle"></div>
     </div>
   </div>
 
