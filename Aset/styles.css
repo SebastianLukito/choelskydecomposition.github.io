@@ -2,114 +2,222 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #f5f5f5;
+  background: url("background.png") no-repeat center center fixed; 
+  background-size: cover; /* This will cover the entire page */
   margin: 0;
   padding: 0;
-  }
+}
 
 h1, h2, h3 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  h1 { font-size: 2.5em; }
-  h2 { font-size: 2em; }
-  h3 { font-size: 1.5em; }  
-  
+  color: #333;
+  margin-bottom: 20px;
+}
+
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; }
+h3 { font-size: 1.5em; }
+
+.container {
+  position: relative; /* Added for absolute positioning of child elements */
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 3em;
+  color: #2c3e50;
+  margin-bottom: 0.5em;
+  margin-top: 1.5em;
+}
+
+
+.sub-title {
+  font-size: 1.5em;
+  color: #34495e;
+  margin-bottom: 1em;
+}
+
+.group-info {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.group-title {
+  font-size: 1.2em;
+  color: #16a085;
+  margin: 1em 0;
+}
+
+.leader {
+  font-weight: none;
+}
+
+.member-list {
+  list-style: none;
+  padding: 0;
+}
+
+.group-member {
+  margin-left: 20px;
+  line-height: 1.6;
+  color: #2c3e50;
+}
+
+input, button {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+@media screen and (max-width: 600px) {
   .container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    text-align: center;
+    width: 95%;
+    margin: 20px auto;
   }
+}
 
-  .main-title {
-    font-size: 3em;
-    color: #2c3e50;
-    margin-bottom: 0.5em;
-  }
-  
-  .sub-title {
-    font-size: 1.5em;
-    color: #34495e;
-    margin-bottom: 1em;
-  }
-  
-  .group-info {
-    text-align: center;
-    margin-bottom: 2em;
-  }
-  
-  .group-title {
-    font-size: 1.2em;
-    color: #16a085;
-    margin: 1em 0;
-  }
-  
-  .leader {
-    font-weight: none;
-  }
-  
-  .member-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .group-member {
-    margin-left: 20px;
-    line-height: 1.6;
-    color: #2c3e50;
-  }
-  
-  
-  input, button {
-    width: 90%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  @media screen and (max-width: 600px) {
-    .container {
-      width: 95%;
-      margin: 20px auto;
-    }
-  }
-
-  .matrix-display {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.matrix-display {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .matrix-display div {
-    margin: 0 10px;
+  margin: 0 10px;
 }
 
 table {
-    border-collapse: collapse;
-    margin: 0 auto;
+  border-collapse: collapse;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 600px;
 }
 
-td {
-    border: 1px solid #ddd;
-    padding: 5px 10px;
-    text-align: center;
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.result-display {
+  text-align: center;
+}
+
+.matrix-display {
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.matrix-display table {
+  margin-bottom: 20px;
+  width: auto;
+}
+
+.learn-more-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+}
+
+.learn-more-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  width: 35px; /* Width to fit the hamburger icon */
+  height: 35px; /* Height to fit the hamburger icon */
+  background-color: #007bff;
+  color: white;
+  border-radius: 10%; /* Initially a circle */
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative; /* Needed for absolute positioning of the pseudo-element */
+}
+
+.learn-more-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px; /* Width of the hamburger lines */
+  height: 2px; /* Height of the hamburger lines */
+  background-color: white;
+  box-shadow: 
+    0 -6px 0 0 white,
+    0 6px 0 0 white; /* Creates two additional lines by shadow */
+  transition: all 0.3s ease;
+}
+
+.learn-more-button:hover {
+  width: auto; /* Width to fit the text */
+  border-radius: 5px; /* Transition to a more button-like shape */
+  padding: 8px 20px;
+}
+
+.learn-more-button:hover::before {
+  content: none; /* Removes the hamburger icon on hover */
+}
+
+.learn-more-button span {
+  opacity: 0;
+  max-width: 0;
+  white-space: nowrap;
+  transition: max-width 0.5s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.learn-more-button:hover span {
+  max-width: 500px; /* Set a max-width that can accommodate the text */
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .matrix-display {
+    overflow-x: auto;
+  }
+
+  .learn-more-container {
+    position: static;
+    margin-bottom: 20px;
+  }
 }
