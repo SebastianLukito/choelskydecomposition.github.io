@@ -11,10 +11,8 @@ function generateMatrix() {
   document.getElementById('matrixInput').innerHTML = matrixInputHtml;
   matrixInput.innerHTML = matrixInputHtml;
 
-  // Show the Cholesky Decomposition button
   document.getElementById('choleskyButton').style.display = 'block';
 
-  // Scroll to the matrix input section
   matrixInput.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
@@ -42,21 +40,18 @@ function generateSymmetricPositiveDefiniteMatrix() {
       return;
   }
 
-  // Update the columns field to match the rows
   document.getElementById('columns').value = size;
 
-  // Generate a random symmetric matrix
   let matrix = [];
   for (let i = 0; i < size; i++) {
       matrix[i] = new Array(size).fill(0);
       for (let j = 0; j <= i; j++) {
           const value = Math.floor(Math.random() * 10) + 1; // +1 to avoid zero
           matrix[i][j] = value;
-          matrix[j][i] = value; // Symmetry
+          matrix[j][i] = value;
       }
   }
 
-  // Modify the diagonal to ensure positive definiteness
   for (let i = 0; i < size; i++) {
       let sum = 0;
       for (let j = 0; j < size; j++) {
@@ -64,22 +59,19 @@ function generateSymmetricPositiveDefiniteMatrix() {
               sum += Math.abs(matrix[i][j]);
           }
       }
-      matrix[i][i] = sum + 1; // Diagonal element > sum of absolute values of non-diagonal elements in the row
+      matrix[i][i] = sum + 1; 
   }
 
-  // Display the generated matrix
   const matrixInputHtml = createMatrixTable(size, size, matrix);
   document.getElementById('matrixInput').innerHTML = matrixInputHtml;
 
-  // Show the Cholesky Decomposition button
   document.getElementById('choleskyButton').style.display = 'block';
 }
 
   function choleskyDecomposition() {
     const rows = parseInt(document.getElementById('rows').value);
     const columns = parseInt(document.getElementById('columns').value);
-  
-    // Retrieve matrix elements from user input
+
     const matrix = [];
     for (let i = 0; i < rows; i++) {
       matrix[i] = [];
@@ -88,16 +80,13 @@ function generateSymmetricPositiveDefiniteMatrix() {
       }
     }
   
-    // Validate the matrix for Cholesky decomposition
     if (!isSymmetricPositiveDefinite(matrix)) {
       alert('Matriks yang dimasukkan bukan matriks simetris positif definit.');
       return;
     }
   
-    // Perform Cholesky decomposition
     const resultMatrix = choleskyDecompose(matrix);
   
-    // Display the result
     displayCholeskyResult(resultMatrix);
   }
   
@@ -117,7 +106,6 @@ function generateSymmetricPositiveDefiniteMatrix() {
   }
   
   function isSymmetricPositiveDefinite(matrix) {
-    // Check if the matrix is symmetric
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < i; j++) {
         if (matrix[i][j] !== matrix[j][i]) {
@@ -126,7 +114,6 @@ function generateSymmetricPositiveDefiniteMatrix() {
       }
     }
   
-    // Check if the matrix is positive definite
     for (let i = 0; i < matrix.length; i++) {
       if (det(matrix.slice(0, i + 1).map(row => row.slice(0, i + 1))) <= 0) {
         return false;
@@ -205,28 +192,22 @@ function transposeMatrix(matrix) {
     document.getElementById('choleskyButton').style.display = 'none';
 });
 
-// When the user loads the page
 window.onload = function() {
   var modal = document.getElementById("popupModal");
   var span = document.getElementsByClassName("close-button")[0];
 
-  // Display the modal
   modal.style.display = "flex";
-  // selain block, bisa juga flex, inline, inline-block, none
-
-  // When the user clicks on <span> (x), close the modal
+  
   span.onclick = function() {
     modal.style.display = "none";
   };
 
-  // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   };
 
-  //close button click = close modal
   document.getElementById("close-button").onclick = function() {
     modal.style.display = "none";
   };
@@ -235,15 +216,12 @@ window.onload = function() {
 window.onload = function() {
   var modal = document.getElementById("popupModal");
 
-  // Open the modal (assuming you want it open on page load)
-  modal.style.display = "flex"; // Or "block", depending on your layout
+  modal.style.display = "flex"; 
 
-  // Close modal using the "Close" button
   document.getElementById("close-button").onclick = function() {
     modal.style.display = "none";
   };
 
-  // Close the modal when clicking outside of it
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
